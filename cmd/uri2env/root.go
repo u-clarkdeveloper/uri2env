@@ -1,4 +1,4 @@
-package uni2env
+package uri2env
 
 import (
 	"fmt"
