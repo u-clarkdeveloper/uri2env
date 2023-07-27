@@ -8,7 +8,7 @@ import (
 	"github.com/u-clarkdeveloper/uri2env/pkg/uri2env"
 )
 
-var version string = "0.0.1"
+var version string = "0.0.2"
 var prefix string = ""
 var verbose bool
 var rootCmd = &cobra.Command{
