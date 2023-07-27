@@ -14,6 +14,14 @@ go build -o ./dist/uri2env
 
 ```shell
 cd dist
-./uri2env -v -p MY_PREFIX "http://userA:passwordA@localhost:8080/path/stuff/here?query=yes&testing=1#my_fragment"```
+```
+```
+./uri2env -v -p MY_PREFIX "http://userA:passwordA@localhost:8080/path/stuff/here?query=yes&testing=1#my_fragment"
+```
+
+## Create .env file 
+
+```shell
+./uri2env -v -p MY_PREFIX "http://userA:passwordA@localhost:8080/path/stuff/here?query=yes&testing=1#my_fragment" > .env
 ```
 
