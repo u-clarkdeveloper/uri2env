@@ -4,8 +4,19 @@ import (
 	"fmt"
 	"net"
 	"net/url"
+	"os"
 	"strings"
+
+	"github.com/fatih/color"
 )
+
+func Error(err any) {
+	color.Set(color.FgRed)
+	fmt.Fprintf(os.Stderr, "Whoops. There was an error while executing your CLI\nError: '%s'\n\n", err)
+	os.Exit(1)
+	color.Unset()
+
+}
 
 func Parse(input string) (string, error) {
 	u, err := url.Parse(input)

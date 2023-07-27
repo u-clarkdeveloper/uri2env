@@ -2,20 +2,20 @@ package uri2env
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/u-clarkdeveloper/uri2env/pkg/uri2env"
+	u "github.com/u-clarkdeveloper/uri2env/pkg/uri2env"
 )
 
-var version string = "0.0.2"
+var version string = "0.0.3"
 var prefix string = ""
 var verbose bool
 var rootCmd = &cobra.Command{
-	Use:     "uri2env [OPTIONS] [COMMANDS] [URI]",
-	Version: version,
-	Args:    cobra.ExactArgs(1),
-	Short:   "uri2env is a tool to convert uri to env and back",
+	Use:           "uri2env [OPTIONS] [COMMANDS] [URI]",
+	SilenceErrors: true,
+	Version:       version,
+	Args:          cobra.ExactArgs(1),
+	Short:         "uri2env is a tool to convert uri to env and back",
 	Long: `uri2env is a tool to convert uri to env and back.
 
 For example:
@@ -36,23 +36,24 @@ MY_PREFIX_FRAGMENT=my_fragment
 
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if verbose {
-			fmt.Printf("Input: %s\n", args)
-			fmt.Printf("Prefix: %s\n", prefix)
-		}
-		output, err := uri2env.ConvertUri(args[0], prefix)
+		output, err := u.ConvertUri(args[0], prefix)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Whoops. There was an error while executing your CLI '%s'", err)
-			os.Exit(1)
+			// :
+			// u.Error(err)
+		} else {
+			if verbose {
+				fmt.Printf("Input: %s\n", args)
+				fmt.Printf("Prefix: %s\n", prefix)
+			}
+			fmt.Println(output)
 		}
-		fmt.Println(output)
+
 	},
 }
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintf(os.Stderr, "Whoops. There was an error while executing your CLI '%s'", err)
-		os.Exit(1)
+		u.Error(err)
 	}
 }
 

@@ -21,7 +21,14 @@ cd dist
 
 ## Create .env file 
 
+### Linux
+
 ```shell
 ./uri2env -v -p MY_PREFIX "http://userA:passwordA@localhost:8080/path/stuff/here?query=yes&testing=1#my_fragment" > .env
 ```
 
+### Windows
+
+```shell
+uri2env.exe -v -p MY_PREFIX "http://userA:passwordA@localhost:8080/path/stuff/here?query=yes&testing=1#my_fragment" > .env
+```
